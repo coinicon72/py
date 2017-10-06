@@ -1,3 +1,4 @@
+"""test case for cmd_parser"""
 import unittest
 from cmd_parser import exec_cmd
 

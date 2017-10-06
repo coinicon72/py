@@ -1,3 +1,6 @@
+"""
+simple chat room implemented via qtnetwork
+"""
 import sys, uuid
 from qtpy.QtCore import QCoreApplication, QObject, Signal, Slot
 from qtpy.QtNetwork import QTcpServer, QTcpSocket, QHostAddress
@@ -5,12 +8,13 @@ from qtpy.QtNetwork import QTcpServer, QTcpSocket, QHostAddress
 
 EOL = '\r\n'
 
+
 class Client(QObject):
     def __init__(self, server, socket, parent=None):
         super(Client, self).__init__(parent)
 
-        self.id = uuid.uuid4().int
-        self.name = None
+        self.id = uuid.uuid4().int  # generated uuid as id
+        self.name = None            # user's name
 
         self.server = server
 
@@ -76,7 +80,7 @@ class Server(QObject):
         super(Server, self).__init__(parent)
 
         self.server = None
-        self.clients = {}
+        self.clients = {}  # save all clients, key=client.id
 
         self.client_registered.connect(self.on_client_registered)
         self.client_message.connect(self.on_client_message)

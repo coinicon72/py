@@ -1,10 +1,24 @@
+"""
+a command line parser
+
+use regex to find all legal opts
+all opts separated by space
+
+supported opt:
+cmd x y       # position opts
+cmd 'x y'     # ??
+cmd x=y a=b   # keyword opts,
+cmd x='y z'   # keyword opt with quote
+
+position opts should place before keyword opts
+"""
 import re
 
 cmds = {}
 
 
 def cmd(func):
-
+    """decorator to expose(register) any command"""
     func_name = func.__name__
     if func_name in cmds.keys():
         raise ValueError("Command already exist.")
