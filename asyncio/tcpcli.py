@@ -36,7 +36,6 @@ coro = loop.create_connection(lambda: Client(loop), '127.0.0.1', 6789)
 trans_sock, _ = loop.run_until_complete(coro)
 print('connected to server')
 
-asyncio.wait()
 
 # stdin
 class StdIn(asyncio.Protocol):
